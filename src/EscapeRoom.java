@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 public class EscapeRoom {
     JPanel panel;
     JLabel situation, choice1, choice2, choice3, choice4, result;
-    JButton option1, option2, option3, option4, next1, next2, wrong1, wrong2, wrong3;
+    JButton option1, option2, option3, option4, next1, next2, next3, next4, next5, wrong1, wrong2, wrong3, wrong4;
 
 
     public static void main(String[] args) {
@@ -31,9 +31,12 @@ public class EscapeRoom {
         option4 = new JButton("4");
         next1 = new JButton("1");
         next2 = new JButton("4");
+        next3 = new JButton("1");
+        next4 = new JButton("3");
         wrong1 = new JButton("1");
         wrong2 = new JButton("1");
         wrong3 = new JButton("1");
+        wrong4 = new JButton("4");
 
 
         panel.add(situation);
@@ -47,9 +50,12 @@ public class EscapeRoom {
         panel.add(option4);
         panel.add(next1);
         panel.add(next2);
+        panel.add(next3);
+        panel.add(next4);
         panel.add(wrong1);
         panel.add(wrong2);
         panel.add(wrong3);
+        panel.add(wrong4);
 
 
         situation.setBounds(65, 0, 600, 100);
@@ -63,25 +69,31 @@ public class EscapeRoom {
         choice4.setBounds(75, 125, 600, 100);
         next1.setBounds(100, 220, 50, 30);
         next2.setBounds(400, 220, 50, 30);
+        next3.setBounds(100, 220, 50, 30);
         wrong1.setBounds(100, 220, 50, 30);
         wrong2.setBounds(100, 220, 50, 30);
         wrong3.setBounds(100, 220, 50, 30);
+        wrong4.setBounds(400, 220, 50, 30);
 
         option1.addActionListener(new bed1());
         next1.addActionListener(new knife());
         next2.addActionListener(new magnet());
+        next3.addActionListener(new key());
         option2.addActionListener(new back1());
         option3.addActionListener(new back2());
         option4.addActionListener(new back3());
-
+        wrong4.addActionListener(new back4());
 
         panel.setLayout(null);
 
         next1.setVisible(false);
         next2.setVisible(false);
+        next3.setVisible(false);
         wrong3.setVisible(false);
         wrong2.setVisible(false);
         wrong1.setVisible(false);
+        option1.setVisible(true);
+        wrong4.setVisible(false);
 
         frame.add(panel);
         frame.setVisible(true);
@@ -96,9 +108,12 @@ public class EscapeRoom {
             choice2.setText("");
             choice3.setText("");
             choice4.setText("");
+
             next1.setVisible(true);
             option1.setVisible(false);
-
+            option2.setVisible(false);
+            option3.setVisible(false);
+            option4.setVisible(false);
         }
 
     }
@@ -112,6 +127,8 @@ public class EscapeRoom {
             choice3.setText("{3} - Interact with Safe");
             choice4.setText("{4} - Interact with Sink");
 
+            option2.setVisible(true);
+            option3.setVisible(true);
             option4.setVisible(false);
             next2.setVisible(true);
 
@@ -127,7 +144,22 @@ public class EscapeRoom {
             choice2.setText("{2} - Interact with Door");
             choice3.setText("{3} - Interact with Safe");
             choice4.setText("{4} - Interact with Sink");
+            next1.setVisible(false);
+            next3.setVisible(true);
+            next2.setVisible(false);
+            wrong4.setVisible(true);
+        }
 
+    }
+
+    class key implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            situation.setText("You find a lockbox under the bed. The key worked! You picked up a code.");
+            choice1.setText("{1} - Interact with Bed");
+            choice2.setText("{2} - Interact with Door");
+            choice3.setText("{3} - Interact with Safe");
+            choice4.setText("{4} - Interact with Sink");
 
         }
 
@@ -137,6 +169,7 @@ public class EscapeRoom {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             situation.setText("You try and turn the knob, it doesn't budge");
+            situation.setBounds(65, 0, 600, 100);
             choice1.setText("{1} - Interact with Bed");
             choice2.setText("{2} - Interact with Door");
             choice3.setText("{3} - Interact with Safe");
@@ -177,7 +210,24 @@ public class EscapeRoom {
 
     }
 
+    class back4 implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+
+            situation.setText("Just a plain old sink now...");
+            situation.setBounds(65, 0, 600, 100);
+            choice1.setText("{1} - Interact with Bed");
+            choice2.setText("{2} - Interact with Door");
+            choice3.setText("{3} - Interact with Safe");
+            choice4.setText("{4} - Interact with Sink");
+
+
+        }
+
+    }
+
 }
+
 
 
 
